@@ -1,0 +1,56 @@
+//Лабораторная 3;  Метод простых итераций
+//Вариант 9 (x^3-2=ln(x+2)); Отрезок [1;2]
+#include <iostream>
+#include <cmath>
+#define _USE_MATH_DEFINES
+using namespace std;
+double f(double x){
+    return pow(x,3)-2.0-log(x+2.0);
+}
+
+double f1(double x){
+    return 3*pow(x,2)-1/(x+2);
+}
+
+double f2(double x){
+    return 1/pow((x+2),2)+6*x;
+}
+
+double fi(double x){
+    return pow((log(x+2)+2), 1/3);
+}
+
+int main(){
+    int k=0;
+    double a=0.0, b=0.0, c=0.0, np=0.0; double x=0.0;
+    cout << "Найдем корень уравнения x^3-2=ln(x+2) с помощью метода простых итераций\nВведите начало отрезка: ";
+    cin >> a;
+    cout << "Введите конец отрезка: ";
+    cin >> b;
+    cout << "Введите точность: ";
+    cin >> c;
+    cout << "Проверим, выполняется ли условие F(a)*F(b)<0: \n";
+    if (f(a)*f(b)<0){
+        cout << "F(a)*F(b) = " << f(a)*f(b) << ", значит корень находится в пределах заданного отрезка\n";
+        if (f(a)*f2(a)>0){
+            np = a; 
+            cout << "За начальное приближение берем начало отрезка\n";
+        }
+        else{
+            np = b;
+            cout << "За начальное приближение берем конец отрезка\n";
+        }
+        x = fi(np);
+        while (fabs(x-np)>c){
+            k++;
+            np = x;
+            x = fi(np);
+        }
+        cout << "Корень уравнения: " << x << "\n";
+        cout << "Количество итераций: " << k;
+    }
+    else{
+        cout << "Корень не принадлежит заданному отрезку"; 
+    }
+    return 0;
+}
