@@ -1,0 +1,29 @@
+//Лабораторная 4. Вариант 11
+//sin(x+0,5)-y=1
+//cos(y-2)+x=0
+
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main(){
+    double c,x,y,x1,y1;
+    int k=0;
+    cout << "Введите точность для решения системы уравнений sin(x+0,5)-y=1 и "
+    << "sin(x+0,5)-y=1: ";
+    cin >> c;
+    while (true){
+        k++;
+        x = -cos(y1-2);
+        y = sin(x1+0.5)-1;
+        if (abs(x - x1) < c and abs(y - y1) < c)
+        {
+            cout << "x = " << x << endl << "y = " << y << endl
+            << "Кол-во итераций: " << k << endl;
+            break;
+        }
+        x1 = x;
+        y1 = y;
+    }
+}
