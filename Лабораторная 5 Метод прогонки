@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main(){
+    int k = 11;
+    double V[100], U[100], x[100], b = 2.0, c = 1.0, d = 10.0 * k, a = 1;
+    U[0] = -(c / b);
+    V[0] = d / b;
+    for (int i = 1; i < 100; i++){
+        if (i != 99){
+            U[i] = -(c) / (a * U[i - 1] + b);
+            V[i] = (d - a * V[i - 1]) / (a * U[i - 1] + b);
+        }
+        else{
+            U[i] = 0;
+            V[i] = (d - a * V[i - 1]) / (a * U[i - 1] + b);
+        }
+    }
+    for (int i = 99; i >= 0; i--){
+        if (i != 99){
+            x[i] = U[i] * x[i + 1] + V[i];
+        }
+        else{
+            x[i] = V[i];
+        }
+    }
+    for (int i = 0; i < 100; i++){
+        cout << "x[" << i + 1 << "] = " << x[i] <<endl;
+    }
+    return 0;
+}
