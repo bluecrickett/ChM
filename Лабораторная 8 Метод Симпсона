@@ -1,0 +1,35 @@
+//Лабораторная 8
+//Метод Симпсона
+#include <iostream>
+#include <math.h>
+using namespace std;
+#define pi 3.1415926535
+
+double integral(double x) {
+return tan(x);
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int n,shetchik=1;
+    double h, integ, i = 0, s = 0;
+    cout << "Программа вычисляет интеграл tan(x) на отрезке [0;П/3] методом Симпсона\n" << "Введите количество разбиений отрезка:";
+    cin >> n;
+    s = s + integral(0) + integral(pi / 3);
+    h = (pi / 3) / n;
+    i = i + h;
+    while (i < (pi / 3)) {
+        if ((shetchik % 2) == 0) {
+        s = s + 2 * tan(i);
+        }
+        else
+        {
+        s = s + 4 * tan(i);
+        }
+        shetchik = shetchik + 1;
+        i = i + h;
+    }
+    integ = h/3*(s);
+    cout << "Значение интерграла с данным разбиением равно: " << integ;
+    return 0;
+}
