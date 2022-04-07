@@ -1,0 +1,27 @@
+//Лабораторная 7
+//Метод трапеций
+#include <iostream>
+#include <math.h>
+using namespace std;
+#define pi 3.1415926535
+
+double integral(double x) {
+    return tan(x);
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int n;
+    double h, integ, i = 0, s = 0;
+    cout << "Программа вычисляет интеграл tan(x) на отрезке [0;П/3] методом трапеций\n" << "Введите количество разбиений отрезка:";
+    cin >> n;
+    h = (pi / 3) / n;
+    i = i + h;
+    while (i < (pi / 3)) {
+        s = s + tan(i);
+        i = i + h;
+    }
+    integ = h * (0.5 * (integral(0) + integral(pi / 3)) + s);
+    cout << "Значение интерграла с данным разбиением равно: " << integ;
+    return 0;
+}
